@@ -13,7 +13,7 @@ public class EnemyController : MonoBehaviour
 	{
 		target = PlayerManager.instance.player.transform;
 		agent = GetComponent<NavMeshAgent>();
-		Debug.Log($"{agent.name}");
+		//Debug.Log($"{agent.name}");
 	}
 
 	private void Update()
@@ -21,8 +21,8 @@ public class EnemyController : MonoBehaviour
 		var distance = Vector3.Distance(target.position, transform.position);
 		if (distance <= lookRadius)
 		{
-			Debug.Log($"Agent name: {agent.name}");
-			Debug.Log($"Target name: {target.name}");
+			//Debug.Log($"Agent name: {agent.name}");
+			//Debug.Log($"Target name: {target.name}");
 			agent.SetDestination(target.position);
 
 			if (distance <= agent.stoppingDistance)
