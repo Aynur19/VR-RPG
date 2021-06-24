@@ -1,3 +1,5 @@
+using System.Collections;
+
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -5,9 +7,13 @@ using UnityEngine.AI;
 public class EnemyController : MonoBehaviour
 {
 	public float lookRadius = 10f;
+	public Treasury treasury;
+
+	public Animator animator;
 
 	private Transform target;
 	private NavMeshAgent agent;
+	private bool isAttack = false;
 
 	private void Start()
 	{
@@ -24,14 +30,30 @@ public class EnemyController : MonoBehaviour
 			//Debug.Log($"Agent name: {agent.name}");
 			//Debug.Log($"Target name: {target.name}");
 			agent.SetDestination(target.position);
+			Debug.Log($"{target.position}");
+			FaceTarget();
 
 			if (distance <= agent.stoppingDistance)
 			{
+				Debug.Log($"isAttack: {isAttack}");
+				if (!isAttack)
+				{
+					isAttack = true;
+					animator.SetBool("isAttack", isAttack);
+					
+					StartCoroutine(Cooldown(2));
+				}
 				//Attack the target
 				//Face the target
-				//FaceTarget();
 			}
 		}
+	}
+
+	private IEnumerator Cooldown(int delay)
+	{
+		yield return new WaitForSeconds(delay);
+		isAttack = false;
+
 	}
 
 	private void FaceTarget()
