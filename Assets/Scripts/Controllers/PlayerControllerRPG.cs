@@ -21,39 +21,39 @@ namespace Assets.Scripts.Controllers
 
 		private void Update()
 		{
-			if (EventSystem.current.IsPointerOverGameObject())
-			{
-				return;
-			}
+			//if (EventSystem.current.IsPointerOverGameObject())
+			//{
+			//	return;
+			//}
 
-			if (Input.GetMouseButtonDown(0))
-			{
-				Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-				RaycastHit hit;
+			//if (Input.GetMouseButtonDown(0))
+			//{
+			//	Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+			//	RaycastHit hit;
 
-				if (Physics.Raycast(ray, out hit, 100, movementMask))
-				{
-					motor.MoveToPoint(hit.point);
+			//	if (Physics.Raycast(ray, out hit, 100, movementMask))
+			//	{
+			//		motor.MoveToPoint(hit.point);
 
-					RemoveFocus();
-				}
-			}
+			//		RemoveFocus();
+			//	}
+			//}
 
-			if (Input.GetMouseButtonDown(1))
-			{
-				Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-				RaycastHit hit;
+			//if (Input.GetMouseButtonDown(1))
+			//{
+			//	Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+			//	RaycastHit hit;
 
-				if (Physics.Raycast(ray, out hit, 100))
-				{
-					var interactable = hit.collider.GetComponent<Interactable>();
+			//	if (Physics.Raycast(ray, out hit, 100))
+			//	{
+			//		var interactable = hit.collider.GetComponent<Interactable>();
 
-					if (interactable != null)
-					{
-						SetFocus(interactable);
-					}
-				}
-			}
+			//		if (interactable != null)
+			//		{
+			//			SetFocus(interactable);
+			//		}
+			//	}
+			//}
 		}
 
 		private void SetFocus(Interactable newFocus)

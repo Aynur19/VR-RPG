@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(NavMeshAgent))]
 public class EnemyController : MonoBehaviour
 {
 	public float lookRadius = 10f;
@@ -14,6 +13,7 @@ public class EnemyController : MonoBehaviour
 	{
 		target = PlayerManager.instance.player.transform;
 		agent = GetComponent<NavMeshAgent>();
+		Debug.Log($"{agent.name}");
 	}
 
 	private void Update()
@@ -21,13 +21,15 @@ public class EnemyController : MonoBehaviour
 		var distance = Vector3.Distance(target.position, transform.position);
 		if (distance <= lookRadius)
 		{
+			Debug.Log($"Agent name: {agent.name}");
+			Debug.Log($"Target name: {target.name}");
 			agent.SetDestination(target.position);
 
 			if (distance <= agent.stoppingDistance)
 			{
 				//Attack the target
 				//Face the target
-				FaceTarget();
+				//FaceTarget();
 			}
 		}
 	}
